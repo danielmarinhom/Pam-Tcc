@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CadastroTcc"
+    xmlns:views="clr-namespace:CadastroTcc.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="CadastroTcc">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Cadastro"
+        ContentTemplate="{DataTemplate views:CadastroView}"
+        Route="CadastroView" />
 
 </Shell>

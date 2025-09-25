@@ -10,7 +10,7 @@ namespace CadastroTcc.Services
 {
     public class Request
     {
-        public async Task<TResult> GetAsync<TResult>(string uri, string token)
+        /*public async Task<TResult> GetAsync<TResult>(string uri, string token)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization
@@ -24,7 +24,7 @@ namespace CadastroTcc.Services
 
             TResult result = await Task.Run(() => JsonConvert.DeserializeObject<TResult>(serialized));
             return result;
-        }
+        }*/
         public async Task<int> PostReturnIntAsync<TResult>(string uri, TResult data, string token)
         {
             HttpClient httpClient = new HttpClient();

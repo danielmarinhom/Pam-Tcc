@@ -10,7 +10,7 @@ namespace CadastroTcc.Services.UsuarioService
     public class UsuarioService : Request
     {
         private readonly Request _request;
-        private const string _apiUrlBase = "https://rpgapi3ai2025.azurewebsites.net/Usuarios";
+        private const string _apiUrlBase = "http://localhost:8080/usuario";
         public UsuarioService()
         {
             _request = new Request();
@@ -21,5 +21,13 @@ namespace CadastroTcc.Services.UsuarioService
             u.Id = await _request.PostReturnIntAsync(_apiUrlBase + urlComplementar, u, string.Empty);
             return u;
         }
+        public async Task<Usuario> PostAutenticarUsuarioAsync(Usuario u)
+        {
+            string urlComplementar = "/Autenticar";
+            u.Id = await _request.PostReturnIntAsync(_apiUrlBase + urlComplementar, u, string.Empty);
+            return u;
+        }
+
+
     }
 }

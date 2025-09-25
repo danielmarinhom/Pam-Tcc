@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroTcc.Views.CadastroView"
+             Title="Cadastro"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="80,*">
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0" BackgroundColor="#2196F3" Padding="15,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Botão Voltar -->
+            <ImageButton Source="voltar.png"
+                         Grid.Column="0"
+                         BackgroundColor="Transparent"
+                         VerticalOptions="Center"
+                         WidthRequest="18"
+                         HeightRequest="18"
+                         Command="{Binding VoltarCommand}" />
+
+            <!-- Texto Voltar -->
+            <Label Text=" Voltar"
+                   Grid.Column="1"
+                   FontFamily="UtendoBold"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   FontSize="18"
+                   FontAttributes="Bold"/>
+        </Grid>
+
+        <!-- CONTEÚDO -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="15">
+
+                <Label Text="Vamos criar uma conta!"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Black"
+                       FontFamily="UtendoRegular"
+                       Margin="0,20,0,20"/>
+
+                <Entry Placeholder="digite seu nome"
+                       Text="{Binding Nome}"
+                       BackgroundColor="White"
+                       HeightRequest="50"
+                       TextColor="Black"
+                       FontSize="16"
+                       FontFamily="UtendoRegular"
+                       Margin="0,5"/>
+
+                <Entry x:Name="TelefoneEntry"
+                       Placeholder="digite seu telefone"
+                       Text="{Binding Telefone}"
+                       Keyboard="Numeric"
+                       BackgroundColor="White"
+                       HeightRequest="50"
+                       FontSize="16"
+                       TextColor="Black"
+                       Margin="0,5"
+                       FontFamily="UtendoRegular"
+                       TextChanged="TelefoneEntry_TextChanged"/>
+
+                <Entry Placeholder="digite sua senha"
+                       Text="{Binding Senha}"
+                       IsPassword="True"
+                       BackgroundColor="White"
+                       HeightRequest="50"
+                       FontSize="16"
+                       TextColor="Black"
+                       FontFamily="UtendoRegular"
+                       Margin="0,5"/>
+
+                <Button Text="Já tenho uma conta"
+                        Command="{Binding IrParaLoginCommand}"
+                        BackgroundColor="Transparent"
+                        BorderColor="#2196F3"
+                        BorderWidth="2"
+                        TextColor="#2196F3"
+                        FontFamily="UtendoBold"
+                        FontSize="20"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        Margin="0,20,0,0"/>
+
+                <Button Text="Continuar"
+                    Command="{Binding RegistrarCommand}"
+                    BackgroundColor="Transparent"
+                    BorderColor="#3EC843"
+                    BorderWidth="2"
+                    TextColor="#3EC843"
+                    FontFamily="UtendoBold"
+                    FontSize="20"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

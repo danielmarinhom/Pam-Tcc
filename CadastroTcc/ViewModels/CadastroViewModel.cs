@@ -12,17 +12,82 @@ namespace CadastroTcc.ViewModels
     public class CadastroViewModel : BaseViewModel
     {
         private UsuarioService _usuarioService;
-        public ICommand AutenticarCommand { get; set; }
-        public ICommand RegistarCommand { get; set; }
+        public ICommand RegistrarCommand { get; set; }
+        private UsuarioService _uService;
+        public CadastroViewModel()
+        {
+            _uService = new UsuarioService();
+            InicializarCommands();
+        }
         public void InicializarCommands()
         {
-
-            AutenticarCommand = new Command(async () => await AutenticarUsuario());
             RegistrarCommand = new Command(async () => await RegistrarUsuario());
         }
-        public async Task<Usuario> AutenticarUsuario()
-        {
 
+
+        #region AtributosPropriedades
+        private string telefone = string.Empty;
+        private string senha = string.Empty;
+        public string Telefone
+        {
+            get => telefone;
+            set
+            {
+                telefone = value;
+                OnPropertyChanged();
+            }
         }
+        public string Senha
+        {
+            get => senha;
+            set
+            {
+                senha = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Metodos
+        public async Task RegistrarUsuario()    
+        {
+            try
+            {
+                Usuario u = new Usuario();
+                u.Telefone = telefone;
+                u.Senha = senha;
+
+                Usuario uRegistrado = await _uService.PostRegistrarUsuarioAsync(u);
+
+                if (uRegistrado.Id != 0)
+                {
+                    string mensagem = $"Usuário Id {uRegistrado.Id} registrado com sucesso.";
+                    await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
+
+                    await Application.Current.MainPage
+                        .Navigation.PopAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                    .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+        public async Task DirecionarParaCadastro()  
+        {
+            try
+            {
+                await Application.Current.MainPage.
+                    Navigation.PushAsync(new Views.LoginView());
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage
+                    .DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "Ok");
+            }
+        }
+
+        #endregion
     }
 }
