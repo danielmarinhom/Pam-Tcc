@@ -64,10 +64,10 @@ namespace CadastroTcc.ViewModels
                     string mensagem = $"Usuário Id {uRegistrado.Id} registrado com sucesso.";
                     await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
 
-                    //await Application.Current.MainPage
-                       // .Navigation.PopAsync();
-                       await Application.Current.MainPage
-                        .Navigation.PushAsync(new Views.LoginView());
+                    
+                    
+                      // await Application.Current.MainPage
+                        //.Navigation.PushAsync(new Views.LoginView());
                 }
             }
             catch (Exception ex)
@@ -80,8 +80,8 @@ namespace CadastroTcc.ViewModels
         {
             try
             {
-                await Application.Current.MainPage.
-                    Navigation.PushAsync(new Views.LoginView());
+                //await Application.Current.MainPage.
+                 //   Navigation.PushAsync(new Views.LoginView());
             }
             catch (Exception ex)
             {
