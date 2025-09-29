@@ -10,14 +10,12 @@ class Usuario(BaseModel):
     telefone: str
     senha: str
 
-# "DB" em memória
 usuarios_db = {}
 lock = threading.RLock()
 
 @app.post("/usuario/Registrar")
 def registrar_usuario(novo_usuario: Usuario):
     with lock:
-        # Verificar se já existe telefone
         for u in usuarios_db.values():
             if u.telefone == novo_usuario.telefone:
                 raise HTTPException(status_code=400, detail="telefone já existe")
@@ -26,7 +24,6 @@ def registrar_usuario(novo_usuario: Usuario):
         usuarios_db[novo_usuario.id] = novo_usuario
         return novo_usuario
 
-# Autenticar (equivalente ao comentado no Go)
 @app.post("/usuario/Autenticar")
 def autenticar_usuario(login: Usuario):
     with lock:
