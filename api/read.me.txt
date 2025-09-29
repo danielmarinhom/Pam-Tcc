@@ -1,3 +1,0 @@
-go get github.com/gin-gonic/gin
-go get github.com/google/uuid
-go run main.go
